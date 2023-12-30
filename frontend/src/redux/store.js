@@ -4,6 +4,7 @@ import userLogoutSlice from "./auth/logout-slice";
 import userRegisterSlice from "./auth/register-slice";
 import userDataSlice from "./query/user-slice";
 import uploadImageSlice from "./photos/uploadImageSlice";
+import deleteImageSlice from "./photos/deleteImageSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     userRegister: userRegisterSlice,
     userData: userDataSlice,
     imageUpload: uploadImageSlice,
+    imageDelete: deleteImageSlice,
   },
 });
 

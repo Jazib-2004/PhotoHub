@@ -47,7 +47,7 @@ export const uploadImageSlice = createSlice({
     builder.addCase(uploadImage.rejected, (state, action) => {
       state.loading = false;
       state.data = {};
-      state.error = action.payload.message;
+      state.error = action.payload?.message || action.error.message;
     });
   },
 });

@@ -5,19 +5,56 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { FiEye } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
-import './Menu.css';
+import "./Menu.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteImage } from "../../redux/photos/deleteImageSlice";
+import toast from "react-hot-toast";
 const options = [`Preview `, "Delete"];
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
+// ... (your imports)
+
+export default function LongMenu({ previewImage, imgId }) {
+  const dispatch = useDispatch();
+  const { success, error, message, loading } = useSelector(
+    (state) => state.imageDelete
+  );
+  const { user } = useSelector((state) => state.userLogin);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  React.useEffect(() => {
+    if (success) {
+      toast.success(message);
+      window.location.reload();
+    }
+    if (error) {
+      toast.error(error);
+    }
+  }, [dispatch, success, error]);
+
+  React.useEffect(() => {
+    if (loading) {
+      toast.loading("Deleting..");
+    } else {
+      toast.dismiss(); // dismiss loading toast when loading is false
+    }
+  }, [loading]);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+    const data = { userId: user._id, imgId };
+    dispatch(deleteImage(data));
+  };
+
+  const handlerImagePreviewClick = () => {
+    setAnchorEl(null);
+    previewImage(true);
   };
 
   return (
@@ -50,11 +87,13 @@ export default function LongMenu() {
         <MenuItem
           key={options[0]}
           selected={options[0] === "Pyxis"}
-          onClick={handleClose}
+          onClick={handlerImagePreviewClick}
         >
           <div className="option">
             <div>{options[0]} </div>
-            <div><FiEye/></div>
+            <div>
+              <FiEye />
+            </div>
           </div>
         </MenuItem>
         <MenuItem
@@ -63,7 +102,7 @@ export default function LongMenu() {
           onClick={handleClose}
         >
           <div className="option">
-            {options[1]} <MdDeleteOutline/>
+            {options[1]} <MdDeleteOutline />
           </div>
         </MenuItem>
       </Menu>

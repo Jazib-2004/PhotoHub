@@ -3,7 +3,7 @@ import "./ImageCard.css"; // Ensure correct file path for CSS styles
 import ImagePreviewModal from "../modals/image-preview-modal";
 
 import LongMenu from "./Menu";
-const ImageCard = ({ image }) => {
+const ImageCard = ({ image, userId }) => {
   const [openModal, setOpenModal] = useState(false);
   const formatDate = (date) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -15,6 +15,9 @@ const ImageCard = ({ image }) => {
   const onCloseModal = () => {
     setOpenModal(false);
   };
+  const previewImage = (val) => {
+    setOpenModal(val);
+  };
   return (
     <>
       <ImagePreviewModal
@@ -22,16 +25,21 @@ const ImageCard = ({ image }) => {
         onClose={onCloseModal}
         imgUrl={image.imgUrl}
       />
-      <div className="image-card" onClick={onOpenModal}>
+      <div className="image-card">
         <img
           src={image.imgUrl}
           alt={`Uploaded on ${formatDate(image.uploadDate)}`}
+          onClick={onOpenModal}
         />
 
         <div className="image-details">
           <p>Size: {image.imgSize}</p>
           <p>Date Uploaded: {formatDate(image.uploadDate)}</p>
-          <LongMenu />
+          <LongMenu
+            previewImage={previewImage}
+            imgId={image.imgId}
+            userId={userId}
+          />
         </div>
       </div>
     </>

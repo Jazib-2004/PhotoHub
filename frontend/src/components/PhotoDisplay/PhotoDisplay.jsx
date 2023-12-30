@@ -66,7 +66,7 @@ const PhotoDisplay = ({ images, userId }) => {
       </div>
       <div className="image-gallery">
         {images.map((image, index) => (
-          <ImageCard key={index} image={image} />
+          <ImageCard key={index} image={image} userId={userId} />
         ))}
       </div>
     </div>
