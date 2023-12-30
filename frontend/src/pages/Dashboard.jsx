@@ -19,12 +19,13 @@ const Dashboard = () => {
   const { activeMenu } = useMenuContext();
   const [mainContentWidth, setMainContentWidth] = useState("calc(100%-288px)"); // Initial width calculation
   const navigate = useNavigate();
+  const userId = user?._id;
+  console.log(userId);
 
   useEffect(() => {
-    const userId = user?._id;
+    dispatch(getUserData(userId));
     setIsLoggedIn(true);
     setAuthUser(user?.username);
-    dispatch(getUserData(userId));
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (activeMenu) {
@@ -40,7 +41,7 @@ const Dashboard = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (success) {

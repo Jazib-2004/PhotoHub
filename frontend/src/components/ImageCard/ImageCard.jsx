@@ -1,6 +1,6 @@
 import React from "react";
-import "./ImageCard.css"; // Ensure correct file path for CSS styles
-
+import "./ImageCard.css";
+import LongMenu from "./Menu";
 const ImageCard = ({ image }) => {
   const formatDate = (date) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -16,9 +16,11 @@ const ImageCard = ({ image }) => {
       <div className="image-details">
         <p>Size: {image.imgSize}</p>
         <p>Date Uploaded: {formatDate(image.uploadDate)}</p>
+        <LongMenu/>
       </div>
     </div>
   );
 };
 
 export default ImageCard;
+

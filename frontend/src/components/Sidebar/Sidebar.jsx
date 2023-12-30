@@ -1,6 +1,8 @@
 import React from "react";
 import "./Sidebar.css";
 import Subtitle from "../Subtitle/Subtitle";
+import { TiCloudStorage } from "react-icons/ti";
+import { GiNetworkBars } from "react-icons/gi";
 const Sidebar = ({ storageUsage, networkUsage }) => {
   const calculatePercentage = (value, total) => {
     return `${(value / total) * 100}%`;
@@ -11,7 +13,7 @@ const Sidebar = ({ storageUsage, networkUsage }) => {
       <Subtitle subtitle="Cherish you memory lane" />
       <div>
         <div className="storage">
-          <h3>Storage Usage</h3>
+          <h3>Storage Usage <TiCloudStorage/></h3>
           <div className="progress-bar">
             <div
               className="progress"
@@ -21,7 +23,7 @@ const Sidebar = ({ storageUsage, networkUsage }) => {
           <p>{storageUsage}MB / 10MB</p>
         </div>
         <div className="network">
-          <h3>Network Usage</h3>
+          <h3>Network Usage <GiNetworkBars/></h3>
           <div className="progress-bar">
             <div
               className="progress"
