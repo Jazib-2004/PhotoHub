@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ImageCard.css"; // Ensure correct file path for CSS styles
 import ImagePreviewModal from "../modals/image-preview-modal";
 
+import LongMenu from "./Menu";
 const ImageCard = ({ image }) => {
   const [openModal, setOpenModal] = useState(false);
   const formatDate = (date) => {
@@ -26,9 +27,11 @@ const ImageCard = ({ image }) => {
           src={image.imgUrl}
           alt={`Uploaded on ${formatDate(image.uploadDate)}`}
         />
+
         <div className="image-details">
           <p>Size: {image.imgSize}</p>
           <p>Date Uploaded: {formatDate(image.uploadDate)}</p>
+          <LongMenu />
         </div>
       </div>
     </>

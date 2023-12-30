@@ -44,3 +44,10 @@ the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLogg
 the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: imageUploaded
 the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: usageUpdated
 the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: storageUpdated
+the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLoggedIn
+the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLoggedIn
+the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLoggedIn
+the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLoggedIn
+the user with userId: 658923d51813af4558574bbb has triggerd this event: userLoggedIn
+the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLoggedIn
+the user with userId: 658fce14f021c5e8557bacdd has triggerd this event: userLoggedIn
