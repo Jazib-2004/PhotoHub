@@ -34,12 +34,16 @@ const ImageCard = ({ image, userId }) => {
 
         <div className="image-details">
           <p>Size: {image.imgSize}</p>
-          <p>Date Uploaded: {formatDate(image.uploadDate)}</p>
-          <LongMenu
-            previewImage={previewImage}
-            imgId={image.imgId}
-            userId={userId}
-          />
+          <p>
+            Date Uploaded: {formatDate(image.uploadDate)}
+            <div className="image__card-menu">
+              <LongMenu
+                previewImage={previewImage}
+                imgId={image.imgId}
+                userId={userId}
+              />
+            </div>
+          </p>
         </div>
       </div>
     </>

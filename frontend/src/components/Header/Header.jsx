@@ -2,17 +2,17 @@ import React, { useRef, useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Container, Row, Button } from "reactstrap";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/PhotoHub.png";
 import "./header.css";
 const nav_links = [
   {
     path: "/home",
     display: "Home",
-  }
+  },
 ];
 
 const Header = () => {
-  const {isLoggedIn, authUser} = useAuth();
+  const { isLoggedIn, authUser } = useAuth();
   const [isOpen, setOpen] = useState(false);
   const headerRef = useRef(null);
   const stickyHeaderHandle = () => {
@@ -31,7 +31,7 @@ const Header = () => {
   useEffect(() => {
     stickyHeaderHandle();
     return window.removeEventListener("scroll", stickyHeaderHandle);
-  });   
+  });
 
   return (
     <header className="header" ref={headerRef}>
@@ -56,11 +56,11 @@ const Header = () => {
         </div>
         <div className="nav__right">
           {/* <div className="nav__btns"> */}
-          <Button className="btn secondary__btn" onClick={()=>setOpen(false)}>
-            <Link to="/Login">{isLoggedIn ? `${authUser}`: "Login"}</Link>
+          <Button className="btn secondary__btn" onClick={() => setOpen(false)}>
+            <Link to="/Login">{isLoggedIn ? `${authUser}` : "Login"}</Link>
           </Button>
-          <Button className="btn primary__btn" onClick={()=>setOpen(false)}>
-            <Link to="/register">{isLoggedIn ? "Logout": "Register"}</Link>
+          <Button className="btn primary__btn" onClick={() => setOpen(false)}>
+            <Link to="/register">{isLoggedIn ? "Logout" : "Register"}</Link>
           </Button>
           {/* </div> */}
         </div>
@@ -72,22 +72,26 @@ const Header = () => {
         >
           <i class="ri-menu-line"></i>
         </span>
-        {isOpen && <div className="mobile__navigation" >
-          {nav_links.map((item, index) => (
-            <div className="nav__item" key={index} onClick={()=>setOpen(false)}>
-              <NavLink
-                className={(navClass) =>
-                  navClass.isActive ? "active__link" : ""
-                }
-                to={item.path}
+        {isOpen && (
+          <div className="mobile__navigation">
+            {nav_links.map((item, index) => (
+              <div
+                className="nav__item"
+                key={index}
+                onClick={() => setOpen(false)}
               >
-                {item.display}
-              </NavLink>
-            </div>
-          ))}
-        </div>
-        }
-
+                <NavLink
+                  className={(navClass) =>
+                    navClass.isActive ? "active__link" : ""
+                  }
+                  to={item.path}
+                >
+                  {item.display}
+                </NavLink>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </header>
   );

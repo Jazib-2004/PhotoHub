@@ -2,11 +2,14 @@
     /* box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px; */
     width: 17rem; /* Adjust width as needed */
     background-color: white;
+    box-shadow: 3px 3px 8px -3px #ddd;
+
 }
 
 .dashboard {
     display: flex;
     flex-direction: row;
+
 }
   
 .main{
@@ -22,6 +25,8 @@
 .navbar{
     background-color: #EDF2F9;
     width:100%;
+    box-shadow: 3px 3px 8px -3px #ddd;
+
 }
 @media (max-width: 768px) {
     .dashboard{

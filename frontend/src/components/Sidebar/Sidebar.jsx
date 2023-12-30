@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Sidebar.css";
 import Subtitle from "../Subtitle/Subtitle";
 import { TiCloudStorage } from "react-icons/ti";
@@ -20,10 +20,10 @@ const Sidebar = ({ storageUsage, networkUsage }) => {
           <div className="progress-bar">
             <div
               className="progress"
-              style={{ width: calculatePercentage(storageUsage, 10) }}
+              style={{ width: calculatePercentage(10 - storageUsage, 10) }}
             ></div>
           </div>
-          <p>{storageUsage.toFixed(3)}MB / 10MB</p>
+          <p>{(10 - storageUsage).toFixed(3)}MB / 10MB Used</p>
         </div>
         <div className="network">
           <div className="logo">
@@ -33,10 +33,10 @@ const Sidebar = ({ storageUsage, networkUsage }) => {
           <div className="progress-bar">
             <div
               className="progress"
-              style={{ width: calculatePercentage(networkUsage, 25) }}
+              style={{ width: calculatePercentage(25 - networkUsage, 25) }}
             ></div>
           </div>
-          <p>{networkUsage.toFixed(3)}MB / 25MB</p>
+          <p>{(25 - networkUsage).toFixed(3)}MB / 25MB Used</p>
         </div>
       </div>
     </aside>

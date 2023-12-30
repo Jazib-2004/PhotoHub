@@ -27,6 +27,7 @@ const PhotoDisplay = ({ images, userId }) => {
     // You'll need to handle image upload logic here
   };
   useEffect(() => {
+    console.log(images);
     if (success) {
       toast.success("Image uploaded");
       window.location.reload();
@@ -67,11 +68,15 @@ const PhotoDisplay = ({ images, userId }) => {
           </Button>
         </form>
       </div>
-      <div className="image-gallery">
-        {images.map((image, index) => (
-          <ImageCard key={index} image={image} userId={userId} />
-        ))}
-      </div>
+      {images.length !== 0 ? (
+        <div className="image-gallery">
+          {images.map((image, index) => (
+            <ImageCard key={index} image={image} userId={userId} />
+          ))}
+        </div>
+      ) : (
+        <div className="no__images">No images to Show</div>
+      )}
     </div>
   );
 };
