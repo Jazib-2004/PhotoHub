@@ -6,7 +6,7 @@ import { uploadImage } from "../../redux/photos/uploadImageSlice";
 import toast from "react-hot-toast";
 // import { dummyImages } from "../../assets/data/imageData";
 const PhotoDisplay = ({ images, userId }) => {
-  const { success } = useSelector((state) => state.imageUpload);
+  const { success, error } = useSelector((state) => state.imageUpload);
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -30,7 +30,11 @@ const PhotoDisplay = ({ images, userId }) => {
       toast.success("Image uploaded");
       window.location.reload();
     }
-  }, [dispatch, success]);
+    if (error) {
+      toast.error(error);
+      window.location.reload();
+    }
+  }, [dispatch, success, error]);
   const addImageHandler = (e) => {
     e.preventDefault();
     if (!file) {
