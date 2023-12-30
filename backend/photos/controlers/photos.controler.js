@@ -37,7 +37,6 @@ export const getImages = async (req, res, next) => {
 };
 
 export const uploadImage = async (req, res, next) => {
-  console.log(req.files[0]);
   const { userId } = req.params;
   const imgSizeToCompare = convertSize(req.files[0].size, "MB");
   // const { imgId, imgUrl, imgSize } = req.body;

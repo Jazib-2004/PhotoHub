@@ -11,6 +11,7 @@ export const deleteImage = createAsyncThunk(
   "Images/deleteImage",
   async (data, { rejectWithValue }) => {
     const { userId, imgId } = data;
+    console.log(imgId);
     try {
       const config = {
         // headers: { "content-Type": "application/json" },
@@ -18,8 +19,10 @@ export const deleteImage = createAsyncThunk(
       };
       const response = await axios.delete(
         `${process.env.REACT_APP_PHOTOS_BACKEND_URL}/deleteImage/${userId}`,
-        imgId,
-        config
+        {
+          data: { imgId }, // include data in the request body
+          ...config,
+        }
       );
 
       return response.data;
@@ -47,7 +50,7 @@ export const deleteImageSlice = createSlice({
     builder.addCase(deleteImage.rejected, (state, action) => {
       state.loading = false;
       state.message = "";
-      state.error = action.payload.message;
+      state.error = action.payload?.message || action.error.message;
     });
   },
 });
