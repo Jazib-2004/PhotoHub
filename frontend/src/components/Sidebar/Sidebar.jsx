@@ -1,6 +1,6 @@
-import React from 'react';
-import './Sidebar.css';
-import Subtitle from '../Subtitle/Subtitle';
+import React from "react";
+import "./Sidebar.css";
+import Subtitle from "../Subtitle/Subtitle";
 const Sidebar = ({ storageUsage, networkUsage }) => {
   const calculatePercentage = (value, total) => {
     return `${(value / total) * 100}%`;
@@ -8,22 +8,28 @@ const Sidebar = ({ storageUsage, networkUsage }) => {
 
   return (
     <aside className="sidebar__main">
-      <Subtitle subtitle="Cherish you memory lane"/>
+      <Subtitle subtitle="Cherish you memory lane" />
       <div>
-      <div className="storage">
-        <h3>Storage Usage</h3>
-        <div className="progress-bar">
-          <div className="progress" style={{ width: calculatePercentage(storageUsage, 25) }}></div>
+        <div className="storage">
+          <h3>Storage Usage</h3>
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: calculatePercentage(storageUsage, 10) }}
+            ></div>
+          </div>
+          <p>{storageUsage}MB / 10MB</p>
         </div>
-        <p>{storageUsage}MB / 25MB</p>
-      </div>
-      <div className="network">
-        <h3>Network Usage</h3>
-        <div className="progress-bar">
-          <div className="progress" style={{ width: calculatePercentage(networkUsage, 50) }}></div>
+        <div className="network">
+          <h3>Network Usage</h3>
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: calculatePercentage(networkUsage, 25) }}
+            ></div>
+          </div>
+          <p>{networkUsage}MB / 25MB</p>
         </div>
-        <p>{networkUsage}MB / 50MB</p>
-      </div>
       </div>
     </aside>
   );

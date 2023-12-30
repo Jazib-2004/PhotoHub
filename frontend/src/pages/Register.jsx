@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../styles/Login.css";
 import registerJmg from "../assets/images/register.png";
 import userIcon from "../assets/images/user.png";
-import axios from "axios";
+
 const Register = () => {
   const [credentials, setCredentials] = useState({
     email: undefined,
@@ -20,21 +20,6 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    // const config = {
-    //   withCredentials: true,
-    // };
-    // e.preventDefault();
-    // try {
-    //   console.log(credentials);
-    //   const response = await axios.post(
-    //     "http://localhost:5000/auth/signup",
-    //     credentials,
-    //     config
-    //   );
-    //   console.log(response.data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <Container>

@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../styles/Login.css";
 import loginImg from "../assets/images/login.png";
 import userIcon from "../assets/images/user.png";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { loginUser } from "../redux/auth/login-slice";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const { loading, isAuthenticated, error } = useSelector(
+    (state) => state.userLogin
+  );
+  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({
     email: undefined,
     password: undefined,
-    role: "travel_agency",
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      toast.success("successfully login");
+      navigate("/dashboard");
+    }
+    if (error) {
+      toast.error(error.msg || error);
+    }
+  }, [dispatch, error, isAuthenticated]);
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -18,21 +36,8 @@ const Login = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-  //   const config = {
-  //     withCredentials: true,
-  //   };
-  //   e.preventDefault();
-  //   try {
-  //     console.log(credentials);
-  //     const response = await axios.post(
-  //       "http://localhost:5000/auth/login",
-  //       credentials,
-  //       config
-  //     );
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
+    dispatch(loginUser(credentials));
+    // console.log(credentials);
   };
   return (
     <Container>

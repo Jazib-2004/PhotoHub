@@ -1,14 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./PhotoDisplay.css";
 import ImageCard from "../ImageCard/ImageCard";
-import { dummyImages } from "../../assets/data/imageData";
-const PhotoDisplay = () => {
-  const [images, setImages] = useState([]); // State to manage uploaded images
-  const imageRef = useRef(null);
+import { useDispatch, useSelector } from "react-redux";
+import { uploadImage } from "../../redux/photos/uploadImageSlice";
+import toast from "react-hot-toast";
+// import { dummyImages } from "../../assets/data/imageData";
+const PhotoDisplay = ({ images, userId }) => {
+  const { success } = useSelector((state) => state.imageUpload);
+  const dispatch = useDispatch();
+  const [file, setFile] = useState(null);
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
-  useEffect(() => {
-    setImages(dummyImages);
-  });
   const handleImageDrop = (e) => {
     e.preventDefault();
     const droppedFiles = Array.from(e.dataTransfer.files);
@@ -20,11 +25,27 @@ const PhotoDisplay = () => {
     // Process the image files and update state (for example: setImages(newImages))
     // You'll need to handle image upload logic here
   };
+  useEffect(() => {
+    if (success) {
+      toast.success("Image uploaded");
+      window.location.reload();
+    }
+  }, [dispatch, success]);
   const addImageHandler = (e) => {
     e.preventDefault();
-    const img = imageRef.current.files[0];
-    console.log(img);
-    alert(`Image ${img.name} of size ${img.size} bytes`);
+    if (!file) {
+      console.error("Please select an image file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = { userId, image: formData };
+    dispatch(uploadImage(data));
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ": " + pair[1]);
+
+    // }
   };
 
   return (
@@ -35,7 +56,7 @@ const PhotoDisplay = () => {
         onDragOver={(e) => e.preventDefault()}
       >
         <form onSubmit={addImageHandler}>
-          <input ref={imageRef} type="file" accept="image/*" />
+          <input onChange={handleFileChange} type="file" accept="image/*" />
           <button type="submit">Submit</button>
         </form>
       </div>
