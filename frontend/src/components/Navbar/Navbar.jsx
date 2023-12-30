@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./Navbar.css";
-import logo from "../../assets/images/PhotoHub.png";
+import logo from "../../assets/images/logo.png";
 import { Button } from "reactstrap";
 const Navbar = ({ username, handleLogout }) => {
   const headerRef = useRef(null);
