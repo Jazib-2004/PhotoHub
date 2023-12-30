@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photos-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: photos
+  template:
+    metadata:
+      labels:
+        app: photos
+    spec:
+      containers:
+        - name: photos
+          image: jazib2004/photos
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: photos-srv
+spec:
+  selector:
+    app: photos
+  ports:
+    - name: photos
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

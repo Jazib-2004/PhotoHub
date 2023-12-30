@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-management-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-management
+  template:
+    metadata:
+      labels:
+        app: user-management
+    spec:
+      containers:
+        - name: user-management
+          image: jazib2004/user-management
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-management-srv
+spec:
+  selector:
+    app: user-management
+  ports:
+    - name: user-management
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
