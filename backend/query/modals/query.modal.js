@@ -25,9 +25,11 @@ const querySchema = mongoose.Schema({
   ],
   storageRemaining: {
     type: Number,
+    default: 10,
   },
   usageRemaining: {
     type: Number,
+    default: 25,
   },
 });
 

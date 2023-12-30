@@ -48,10 +48,12 @@ export default function LongMenu({ previewImage, imgId }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleDeleteClick = () => {
+    setAnchorEl(null);
     const data = { userId: user._id, imgId };
     dispatch(deleteImage(data));
   };
-
   const handlerImagePreviewClick = () => {
     setAnchorEl(null);
     previewImage(true);
@@ -99,7 +101,7 @@ export default function LongMenu({ previewImage, imgId }) {
         <MenuItem
           key={options[1]}
           selected={options[1] === "Pyxis"}
-          onClick={handleClose}
+          onClick={handleDeleteClick}
         >
           <div className="option">
             {options[1]} <MdDeleteOutline />

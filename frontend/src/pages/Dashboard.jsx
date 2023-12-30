@@ -23,7 +23,12 @@ const Dashboard = () => {
   console.log(userId);
 
   useEffect(() => {
+    console.log("object");
+  }, []);
+
+  useEffect(() => {
     dispatch(getUserData(userId));
+    console.log("object");
     setIsLoggedIn(true);
     setAuthUser(user?.username);
     const handleResize = () => {
@@ -41,7 +46,7 @@ const Dashboard = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [userId]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (success) {
@@ -59,9 +64,10 @@ const Dashboard = () => {
     dispatch(logoutUser());
   };
 
+  console.log(data);
   return (
     <>
-      {data && (
+      {data.images && (
         <div className="dashboard">
           {/* Sidebar */}
           <div className="sidebar">

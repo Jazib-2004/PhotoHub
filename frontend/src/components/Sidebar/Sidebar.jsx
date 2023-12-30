@@ -4,6 +4,7 @@ import Subtitle from "../Subtitle/Subtitle";
 import { TiCloudStorage } from "react-icons/ti";
 import { GiNetworkBars } from "react-icons/gi";
 const Sidebar = ({ storageUsage, networkUsage }) => {
+  console.log(storageUsage, networkUsage);
   const calculatePercentage = (value, total) => {
     return `${(value / total) * 100}%`;
   };

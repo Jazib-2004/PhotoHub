@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { Button } from "reactstrap";
 // import { dummyImages } from "../../assets/data/imageData";
 const PhotoDisplay = ({ images, userId }) => {
-  const { success, error } = useSelector((state) => state.imageUpload);
+  const { success, error, loading } = useSelector((state) => state.imageUpload);
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -37,6 +37,11 @@ const PhotoDisplay = ({ images, userId }) => {
       window.location.reload();
     }
   }, [dispatch, success, error]);
+  useEffect(() => {
+    if (loading) {
+      toast.loading("Image uploading..");
+    }
+  }, [loading]);
   const addImageHandler = (e) => {
     e.preventDefault();
     if (!file) {
