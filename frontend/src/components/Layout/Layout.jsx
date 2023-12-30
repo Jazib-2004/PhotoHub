@@ -1,18 +1,15 @@
-import React from 'react'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
-import Routers from '../../routers/Routers'
-import { useAuth } from '../../contexts/AuthContext'
+import React from "react";
+import Header from "../Header/Header";
+import Routers from "../../routers/Routers";
+import { useAuth } from "../../contexts/AuthContext";
 const Layout = () => {
-  const {isLoggedIn} = useAuth();
+  const { isLoggedIn } = useAuth();
   return (
     <>
-    {!isLoggedIn && <Header/>}
-    <Routers/>
-    {/* <Footer/> */}
+      {!isLoggedIn && <Header />}
+      <Routers />
     </>
+  );
+};
 
-  )
-}
-
-export default Layout
+export default Layout;

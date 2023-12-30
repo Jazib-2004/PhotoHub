@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px !important;
     background-color: white !important;
     color: white;
   }
@@ -31,23 +31,12 @@
     cursor: pointer;
   }
 
-.sticky__header{
-    width: 100%;
-    height: 80px;
-    line-height: 80px;
-    background: #fff;
-    position: sticky;
-    top: 0;
-    left: 0;
-    box-shadow: 3px 3px 8px -3px #ddd;
-    z-index: 999;
-}
   
   /* Responsive styles */
   @media (max-width: 768px) {
     .navbar {
-      flex-direction: column;
-      align-items: flex-start;
+      flex-wrap: nowrap !important;
+      justify-content: center;
     }
   
     .logo {

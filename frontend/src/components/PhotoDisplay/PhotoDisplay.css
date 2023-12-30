@@ -48,5 +48,8 @@
     .image-gallery .image-card {
       width: 100%; /* Display 1 image in a row for extra small screens */
     }
+    .photo-display{
+      margin: 20px;
+    }
   }
   

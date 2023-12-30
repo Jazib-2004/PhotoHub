@@ -11,26 +11,32 @@ const Sidebar = ({ storageUsage, networkUsage }) => {
   return (
     <aside className="sidebar__main">
       <Subtitle subtitle="Cherish you memory lane" />
-      <div>
+      <div className="storage__network">
         <div className="storage">
-          <h3>Storage Usage <TiCloudStorage/></h3>
+          <div className="logo">
+            <h4>Storage Usage </h4>
+            <TiCloudStorage className="logo__main" />
+          </div>
           <div className="progress-bar">
             <div
               className="progress"
               style={{ width: calculatePercentage(storageUsage, 10) }}
             ></div>
           </div>
-          <p>{storageUsage}MB / 10MB</p>
+          <p>{storageUsage.toFixed(3)}MB / 10MB</p>
         </div>
         <div className="network">
-          <h3>Network Usage <GiNetworkBars/></h3>
+          <div className="logo">
+            <h4>Network Usage </h4>
+            <GiNetworkBars className="logo__main" />
+          </div>
           <div className="progress-bar">
             <div
               className="progress"
               style={{ width: calculatePercentage(networkUsage, 25) }}
             ></div>
           </div>
-          <p>{networkUsage}MB / 25MB</p>
+          <p>{networkUsage.toFixed(3)}MB / 25MB</p>
         </div>
       </div>
     </aside>

@@ -4,6 +4,7 @@ import ImageCard from "../ImageCard/ImageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage } from "../../redux/photos/uploadImageSlice";
 import toast from "react-hot-toast";
+import { Button } from "reactstrap";
 // import { dummyImages } from "../../assets/data/imageData";
 const PhotoDisplay = ({ images, userId }) => {
   const { success } = useSelector((state) => state.imageUpload);
@@ -57,7 +58,9 @@ const PhotoDisplay = ({ images, userId }) => {
       >
         <form onSubmit={addImageHandler}>
           <input onChange={handleFileChange} type="file" accept="image/*" />
-          <button type="submit">Submit</button>
+          <Button type="submit" className="btn primary__btn">
+            Submit
+          </Button>
         </form>
       </div>
       <div className="image-gallery">

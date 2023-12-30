@@ -1,6 +1,6 @@
 .sidebar{
     /* box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px; */
-    width: 18rem; /* Adjust width as needed */
+    width: 17rem; /* Adjust width as needed */
     background-color: white;
 }
 
@@ -33,5 +33,9 @@
 
     .main{
         min-width: 100%;
+    }
+    .sidebar{
+        width: 100%;
+
     }
 }
